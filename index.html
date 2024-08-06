@@ -30,6 +30,18 @@
                 color: rgb(0,0,0);
                 transform: translateZ(0);
             }
+            .card2{
+                background-color: rgba(89, 89, 89, 0.25);
+                backdrop-filter: blur(6px);
+                -webkit-backdrop-filter: blur(6px);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                box-shadow: rgba(14, 14, 14, 0.19) 0px 6px 15px 0px;
+                -webkit-box-shadow: rgba(14, 14, 14, 0.19) 0px 6px 15px 0px;
+                border-radius: 12px;
+                -webkit-border-radius: 12px;
+                color: rgb(0,0,0);
+                transform: translateZ(0);
+            }
             .background{
                 transform: translateZ(-10px) translateX(-45%) translateY(-35%);
                 position: absolute;
@@ -39,19 +51,91 @@
             .background2{
                 transform: translateZ(-5px) translateX(-45%) translateY(-35%);
                 position: absolute;
-                width:610%;
+                width:650%;
                 height:1804%;
             }
+            .typing{
+                width: 15em;
+                white-space: nowrap;
+                border-right: 2px solid transparent;
+                animation: typing 5s steps(15, end) infinite, blink-caret .75s step-end infinite;
+                overflow: hidden;
+                --time:15em;
+                --time2:7s;
+            }
+
+            @keyframes typing {
+                0%{
+                    width: 0; 
+                }
+                55% { 
+                    width: var(--time); 
+                }
+                75% {
+                    width: var(--time);
+                }
+                95% { 
+                    width: 0; 
+                }
+                100% { 
+                    width: 0; 
+                }
+            }
+
+            @keyframes blink-caret {
+                from, to { box-shadow: 1px 0 0 0 transparent; }
+                50% { box-shadow: 1px 0 0 0; }
+            }
         </style>
+        <script>
+            window.onload = function(){
+                var t=0;
+                function l(){
+                    var card = document.getElementsByClassName('typing')[0];
+                    var strings=["hello world?","welcome to lyy blog!","欢迎来到我的博客"];
+                    var size=[6,10,8];
+                    var oo=(t++)%3;
+                    card.textContent=strings[oo];
+                    card.style.setProperty('--time', size[oo]+'em');
+                    card.style.setProperty('--time2', Math.floor(card.textContent.length/2*600/3+1000)+'ms');
+                    setTimeout(l,5000);
+                }
+                l();  
+                function r(){
+                    var delp = document.getElementById('delp');
+                    const paramsStr = window.location.search;
+                    const params = new URLSearchParams(paramsStr);
+                    var l=params.get('src');
+                    if(l[0]!='T'){
+                        delp.src="about:blank";
+                        return;
+                    }
+                    delp.src=l;
+                    setTimeout(l,1000);
+                }
+                r();
+            }
+        </script>
     </head>
     <body>
         
         <img class="background" src="https://cdn.luogu.com.cn/upload/image_hosting/7vnda05w.png"/>
         <img class="background2" src="https://cdn.luogu.com.cn/upload/image_hosting/lyq8ns06.png"/>
-        <div class="card">
-	        <img src="logo.svg" width="512px"height="512px"></img>
-            <h3 class="card-title">lyy's blog</h3>
-            <p>welcome :)</p>
+        <div class="card" style="text-align: center;padding: 10px 10px 10px 10px;">
+            <div class="card" style="display: inline-block;">
+                <img src="http://47.116.204.106/blogSVG.svg" width="200px"></img>
+            </div>
+            <div class="card" style="display: inline-block; width:85%;margin-left: 10px;">
+                <p class="typing">卧槽，你是怎么找到这里的！！！</p>
+            </div>
+        </div>
+        <div style="margin-top: 1%;">
+            <div class="card" style="display: inline-block;width:20%;margin-left: 2%;">
+                <iframe src="list.html" frameborder="0"></iframe>
+            </div>
+            <div class="card" style="display: inline-block;width:70%;margin-left: 5%;float:right;">
+                <iframe src="" id="delp" scrolling="no" frameborder="0"></iframe>
+            </div>
         </div>
     </body>
 </html>
