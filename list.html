@@ -1,9 +1,25 @@
+<style>
+    .card{
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+            -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+            border-radius: 7px;
+            -webkit-border-radius: 7px;
+            color: rgb(0,0,0);
+            transform: translateZ(0);
+        }
+</style>
 <script>
     function url(s){
         console.log(window.opener);
         window.open(s, '_blank');
     }
 </script>
-<list>
-    <li onclick="url('https://lyyblog.github.io/?src=T0000.html')">首页</li>
-</list>
+<div class="card">
+    <list>
+        <li onclick="url('https://lyyblog.github.io/?src=T0000.html')">首页</li>
+    </list>
+</div>
