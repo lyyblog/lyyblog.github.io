@@ -106,6 +106,9 @@
                     const paramsStr = window.location.search;
                     const params = new URLSearchParams(paramsStr);
                     var l=params.get('src');
+                    if(l==""){
+                        l="T0000.html"
+                    }
                     if(l[0]!='T'){
                         delp.src="about:blank";
                         return;
